@@ -1,1 +1,0 @@
-{"version":3,"sources":["main.coffee"],"names":[],"mappings":"AAAA,OAAO,CAAC,GAAR,CAAY,aAAZ,CAAA,CAAA","file":"main.js","sourceRoot":"/source/","sourcesContent":["console.log 'hello world'\n"]}
