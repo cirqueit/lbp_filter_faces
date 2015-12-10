@@ -1,0 +1,44 @@
+doctype html
+html
+    head
+        meta(charset="utf-8")
+        title Frontal Faces
+        meta(name="apple-mobile-web-app-capable" content="yes")
+        meta(name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no")
+        meta(name="apple-mobile-web-app-status-bar-style" content="black")
+        link(rel='stylesheet', href='/flat-ui/dist/css/vendor/bootstrap.min.css')
+        link(rel='stylesheet', href='/flat-ui/dist/css/flat-ui.min.css')
+        //HTML5 shim, for IE6-8 support of HTML5 elements. All other JS at the end of file.
+        //[if lt IE 9]
+        script(src="/flat-ui/dist/js/vendor/html5shiv.js")
+        script(src="/flat-ui/dist/js/vendor/respond.min.js")
+        //[endif]
+                           
+    body(ng-app="flatuiApp")
+        div.container(ng-controller="FlatUICtrl")
+            div.row
+                div.col-sm-1
+                    a.btn.btn-success.btn-lg(ng-click="dec()") prev
+                div.col-sm-2
+                    input(type="number" ng-model="start" ng-change="update()")
+                div.col-sm-2
+                    p(style="text-align: left") total : {{size}}
+                div.col-sm-1
+                    a.btn.btn-success.btn-lg(ng-click="inc()") next
+                div.col-sm-1
+                div.col-sm-1
+                    a.btn.btn-primary.btn-lg(ng-click="save()") save
+            div.row
+                div.col-sm-1(ng-repeat="img in display" ng-click="flag(img)")
+                    img(ng-src="assets/{{img}}" height="{{isize}}" width="{{isize}}")
+                    p.fui-cross-circle(ng-if="bad(img)" style="color:red; position: absolute; top: 0; left: 70%;")
+            div.row(ng-if="log")
+                div.col-sm-11
+                    p(style="font-size:16px") {{false_positives}}
+                                                            
+
+        script(src="/angular/angular.min.js")
+        script(src="/scripts/app.js")
+        script(src="/scripts/controllers/flatui.ctrl.js")
+        script(src="/flat-ui/dist/js/vendor/jquery.min.js")
+        script(src="/flat-ui/dist/js/flat-ui.min.js")

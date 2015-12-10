@@ -1,0 +1,26 @@
+#! /usr/bin/python
+
+import json
+import glob
+import re
+
+def cmp_endings(x, y):
+    str = r'(.+)_face_(\d+).jpg'
+    mx = re.match(str, x)
+    my = re.match(str, y)
+
+    if mx.group(1) == my.group(1):
+        return int(mx.group(2)) - int(my.group(2))
+    else: 
+        if mx.group(1) < my.group(1):
+            return -1
+        elif mx.group(1) > my.group(1):
+            return 1
+        else:
+            return 0
+
+
+img = glob.glob('saved/*.jpg')
+
+with open('images.json', 'w') as f:
+    json.dump(sorted(img, cmp=cmp_endings), f)
